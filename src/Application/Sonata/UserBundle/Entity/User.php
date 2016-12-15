@@ -26,6 +26,17 @@ use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 class User extends BaseUser
 {
     /**
+     * @ORM\ManyToMany(targetEntity="GoFlashBundle\Entity\Joueur, mappedBy="users")
+     */
+    private $joueurs;
+
+    /**
+    * @ORM\ManyToMany(targetEntity="GoFlashBundle\Entity\Jeu", mappedBy="users")
+    */
+    private $jeux;
+
+
+    /**
      * @var int $id
      */
     protected $id;
@@ -39,5 +50,39 @@ class User extends BaseUser
     {
         return $this->id;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getJeux()
+    {
+        return $this->jeux;
+    }
+
+    /**
+     * @param mixed $jeux
+     */
+    public function setJeux($jeux)
+    {
+        $this->jeux = $jeux;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getJoueurs()
+    {
+        return $this->joueurs;
+    }
+
+    /**
+     * @param mixed $joueurs
+     */
+    public function setJoueurs($joueurs)
+    {
+        $this->joueurs = $joueurs;
+    }
+
+
 
 }

@@ -12,6 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Experience
 {
+
+    /**
+     * @ORM\OneToOne(targetEntity="GoFlashBundle\Entity\Joueur", mappedBy="experience")
+     */
+    private $joueur;
+
+
     /**
      * @var int
      *
@@ -93,4 +100,22 @@ class Experience
     {
         return $this->niveau;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getJoueur()
+    {
+        return $this->joueur;
+    }
+
+    /**
+     * @param mixed $joueur
+     */
+    public function setJoueur($joueur)
+    {
+        $this->joueur = $joueur;
+    }
+
+
 }
