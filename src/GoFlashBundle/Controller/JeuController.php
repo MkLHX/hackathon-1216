@@ -42,37 +42,21 @@ class JeuController extends Controller
      */
     public function newAction(Request $request)
     {
-
         $jeu = new Jeu();
-
         $form = $this->createForm('GoFlashBundle\Form\JeuType', $jeu);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-//            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-//            $file = $jeu->getImageObjectif();
-
-//            // Génerer un nom unique avant sa sauvegarde
-//            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-
-            // Transferer l'image vars son dossier de destination
-//            $file->move(
-//                $this->getParameter('objectif_directory'), // routing pour definir l'endroit ou stocker l'image
-//                $fileName
-//            );
-
-            // Enregistrement de l'image
-//            $jeu->setImageObjectif($fileName);
-
-//            $objet->setCateg($objet->getSousCateg()->getCategorie());  // POUR LA FUTURE RELATION - A MODIFIER -
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($jeu);
             $em->flush($jeu);
 
+            $this->addFlash(
+                'success',
+                'Votre jeu a bien été ajouté'
+            );
+
             return $this->redirectToRoute('jeu_show', array('id' => $jeu->getId()));
-//            return $this->redirect($this->generateUrl('jeu_show', array('id' => $jeu->getId())));
         }
 
         return $this->render('@GoFlash/jeu/new.html.twig', array(
