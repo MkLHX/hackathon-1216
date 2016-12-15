@@ -3,6 +3,7 @@
 namespace GoFlashBundle\Controller;
 
 use Application\Sonata\UserBundle\Controller\ProfileFOSUser1Controller;
+use Application\Sonata\UserBundle\Entity\User;
 use GoFlashBundle\Entity\Experience;
 use GoFlashBundle\Entity\Jeu;
 use GoFlashBundle\Entity\Joueur;
@@ -66,7 +67,7 @@ class ExperienceController extends Controller
      * @Route("/{id}/edit", name="experience_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Experience $experience)//, Profile $id, Joueur $idUser, Jeu $id)
+    public function editAction(Request $request, Experience $experience/*, User $id, Joueur $idUser, Jeu $id*/)
     {
 //        $deleteForm = $this->createDeleteForm($experience);
 //        $editForm = $this->createForm('GoFlashBundle\Form\ExperienceType', $experience);
@@ -74,7 +75,7 @@ class ExperienceController extends Controller
         $editForm->handleRequest($request);
 //      ICI ON DOIT RECUPERER LES DONNEES DES CHAMPS ID.JOUEUR, USER_ID.JOUEUR, IMAGE_ESSAI.JOUEUR, USER_ID.EXPERIENCE;
 //                                                   EXPERIENCE.EXPERIENCE, NIVEAU.EXPERIENCE,
-//                                                   ID.PROFILE
+//                                                   ID.USER
 
 //        if (){
 //
