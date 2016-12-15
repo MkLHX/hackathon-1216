@@ -3,7 +3,9 @@
 namespace GoFlashBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints as Assert
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Jeu
@@ -13,6 +15,68 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Jeu
 {
+    public $file;
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            // do whatever you want to generate a unique name
+            $this->imageObjectif = uniqid().'.'.$this->file->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist
+     */
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->file->move($this->getUploadRootDir(), $this->imageObjectif);
+
+        unset($this->file);
+    }
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
+    }
+
+    //  FONCTION DE TEST DU DOSSIER UPLOAD
+    protected function getUploadDir()
+    {
+        return 'uploads/objectif';
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->imageObjectif ? null : $this->getUploadDir().'/'.$this->imageObjectif;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->imageObjectif ? null : $this->getUploadRootDir().'/'.$this->imageObjectif;
+    }
+
+    /* ---------------------------------- CODE GENERER --------------------------------------- */
     /**
      * @var int
      *
