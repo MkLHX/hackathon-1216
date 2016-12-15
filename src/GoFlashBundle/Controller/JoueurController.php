@@ -2,6 +2,7 @@
 
 namespace GoFlashBundle\Controller;
 
+use GoFlashBundle\Entity\Jeu;
 use GoFlashBundle\Entity\Joueur;
 use Application\Sonata\UserBundle\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -37,21 +38,21 @@ class JoueurController extends Controller
     /**
      * Creates a new joueur entity.
      *
-     * @Route("/new", name="joueur_new")
+     * @Route("/{id}/new", name="joueur_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, Jeu $jeu, Entity\User $user)
     {
         $joueur = new Joueur();
-//        var_dump($joueur->getUsers()); die;
+
 //        $form = $this->createForm('GoFlashBundle\Form\JoueurType', $joueur);
 //        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        $joueur->addJeux($jeu); // appel de l'id de jeu pour insertion dans table joueur
+        $user->getUsers($id);
 
-//            $user_Id = $joueur->getId();
-//            $joueur->setId
+        if ($joueur->isSubmitted() && $joueur->isValid()) {
+            $em = $this->getDoctrine()->getManager();
 
             $em->persist($joueur);
             $em->flush($joueur);
@@ -61,7 +62,7 @@ class JoueurController extends Controller
 
         return $this->render('@GoFlash/joueur/new.html.twig', array(
             'joueur' => $joueur,
-            'form' => $form->createView(),
+//            'form' => $form->createView(),
         ));
     }
 
@@ -89,9 +90,9 @@ class JoueurController extends Controller
      */
     public function editAction(Request $request, Joueur $joueur)
     {
-        $deleteForm = $this->createDeleteForm($joueur);
-        $editForm = $this->createForm('GoFlashBundle\Form\JoueurType', $joueur);
-        $editForm->handleRequest($request);
+//        $deleteForm = $this->createDeleteForm($joueur);
+//        $editForm = $this->createForm('GoFlashBundle\Form\JoueurType', $joueur);
+//        $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
