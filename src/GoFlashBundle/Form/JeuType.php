@@ -3,6 +3,7 @@
 namespace GoFlashBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -16,11 +17,16 @@ class JeuType extends AbstractType
     {
         $builder
             ->add('titre')
-            ->add('description')
-            ->add('file', 'file', array('label' => 'Capturer',
+            ->add('description',TextType::class, array(
+                                'required'=>false,
+                                )
+            )
+            ->add('file', 'file', array('label' => 'Capture',
                                                              'attr' => array('accept' => 'image/*',
                                                                           'id' => 'capture',
-                                                                          'capture' => 'camera')))
+                                                                          'capture' => 'camera')
+                                        )
+            )
         ;
     }
     

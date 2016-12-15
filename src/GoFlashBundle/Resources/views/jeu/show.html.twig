@@ -1,40 +1,21 @@
-{% extends 'base.html.twig' %}
+{% extends 'GoFlashBundle::frontLayout.html.twig' %}
 
-{% block body %}
-    <h1>Jeu</h1>
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/showjeu.css') }}">
+{% endblock %}
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ jeu.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ jeu.titre }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ jeu.description }}</td>
-            </tr>
-            <tr>
-                <th>Imageobjectif</th>
-                <td>{{ jeu.imageObjectif }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('jeu_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('jeu_edit', { 'id': jeu.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block main %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-10 text-center">
+                <div class="vignetteJeu">
+                    <h1>Bienvenue {{ app.user.username }}</h1>
+                    <h2>C'est parti pour le jeu {{ jeu.titre }}</h2>
+                    <p>{{ jeu.description }}</p>
+                    <img class="img-responsive img-rounded" src="{{ asset('uploads/objectif/'~ jeu.imageObjectif) }}" alt="image du jeu {{ jeu.id ~' '~ jeu.titre}}">
+                    <a id="go" class="btn btn-default" href="{# path('goplay') #}"><i class="fa fa-play fa-2x"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

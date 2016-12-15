@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Jeu controller.
  *
- * @Route("jeu")
+ * @Route("/jeux")
  */
 class JeuController extends Controller
 {
@@ -27,10 +27,10 @@ class JeuController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $jeus = $em->getRepository('GoFlashBundle:Jeu')->findAll();
+        $jeux = $em->getRepository('GoFlashBundle:Jeu')->findAll();
 
         return $this->render('@GoFlash/jeu/index.html.twig', array(
-            'jeus' => $jeus,
+            'jeux' => $jeux,
         ));
     }
 /* ---------------------------------------- NEW ----------------------------------------- */
@@ -56,7 +56,7 @@ class JeuController extends Controller
                 'Votre jeu a bien été ajouté'
             );
 
-            return $this->redirectToRoute('jeu_show', array('id' => $jeu->getId()));
+            return $this->redirectToRoute('accueil');
         }
 
         return $this->render('@GoFlash/jeu/new.html.twig', array(
@@ -70,7 +70,7 @@ class JeuController extends Controller
     /**
      * Finds and displays a jeu entity.
      *
-     * @Route("/{id}", name="jeu_show")
+     * @Route("/{id}/show", name="jeu_show")
      * @Method("GET")
      */
     public function showAction(Jeu $jeu)
@@ -113,7 +113,7 @@ class JeuController extends Controller
     /**
      * Deletes a jeu entity.
      *
-     * @Route("/{id}", name="jeu_delete")
+     * @Route("/{id}/delete", name="jeu_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Jeu $jeu)
