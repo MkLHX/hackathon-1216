@@ -23,7 +23,9 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "sonata-project/admin-bundle": "^3.10",
         "sonata-project/doctrine-orm-admin-bundle": "^3.1",
-        "sonata-project/user-bundle": "^3.2"
+        "sonata-project/user-bundle": "^3.2",
+        "hwi/oauth-bundle": "^0.5.2",
+        "components/jquery": "^3.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
