@@ -8,10 +8,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="accueil")
      */
-    public function indexAction()
+    public function accueilAction()
     {
-        return $this->render('GoFlashBundle:Default:index.html.twig');
+        return $this->render('GoFlashBundle::accueil.html.twig');
     }
+
 }
