@@ -1,0 +1,17 @@
+{% extends 'GoFlashBundle::frontLayout.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/accueil.css') }}">
+{% endblock %}
+
+{% block main %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="intro text-center">
+                <h1>GoFlash!</h1>
+                <h2>Voici la liste des challenges disponibles</h2>
+            </div>
+        </div>
+    </div>
+</div>
+ {% endblock %}
