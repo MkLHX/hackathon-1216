@@ -22,12 +22,12 @@ class JoueurController extends Controller
      * @Route("/", name="joueur_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Entity\User $joueur)
     {
         $em = $this->getDoctrine()->getManager();
-        $user_Id = getJoueurs();
+        $joueur = $this->getJoueurs();
 
-        $joueurs = $em->getRepository('GoFlashBundle:Joueur')->findBy($user_Id);
+        $joueurs = $em->getRepository('GoFlashBundle:Joueur')->findBy($joueurs);
 
         return $this->render('@GoFlash/joueur/index.html.twig', array(
             'joueurs' => $joueurs,
@@ -43,11 +43,16 @@ class JoueurController extends Controller
     public function newAction(Request $request)
     {
         $joueur = new Joueur();
-        $form = $this->createForm('GoFlashBundle\Form\JoueurType', $joueur);
-        $form->handleRequest($request);
+        var_dump($joueur->getUsers()); die;
+//        $form = $this->createForm('GoFlashBundle\Form\JoueurType', $joueur);
+//        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+//            $user_Id = $joueur->getId();
+//            $joueur->setId
+
             $em->persist($joueur);
             $em->flush($joueur);
 
