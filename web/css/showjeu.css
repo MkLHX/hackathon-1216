@@ -1,6 +1,14 @@
-a{
-    text-decoration: none !important;
-    color: inherit !important;
+img{
+    margin: 0 auto;
+    padding: 20px;
+    width: 80%;
+    height: 80%;
+}
+#go{
+    padding: 20px;
+}
+#go i{
+    color: #00a65a;
 }
 .vignetteJeu{
     -webkit-box-shadow: 3px 5px 10px black;
@@ -11,7 +19,7 @@ a{
     margin-bottom: 20px;
 }
 .vignetteJeu img{
-    width: 40%;
-    height: 40%;
+    width: 80%;
+    height: 80%;
     margin: 0 auto;
 }

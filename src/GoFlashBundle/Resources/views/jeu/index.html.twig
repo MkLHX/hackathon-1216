@@ -1,43 +1,19 @@
-{% extends 'base.html.twig' %}
+{% extends 'GoFlashBundle::frontLayout.html.twig' %}
 
-{% block body %}
-    <h1>Jeus list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Description</th>
-                <th>Imageobjectif</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for jeu in jeus %}
-            <tr>
-                <td><a href="{{ path('jeu_show', { 'id': jeu.id }) }}">{{ jeu.id }}</a></td>
-                <td>{{ jeu.titre }}</td>
-                <td>{{ jeu.description }}</td>
-                <td>{{ jeu.imageObjectif }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('jeu_show', { 'id': jeu.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('jeu_edit', { 'id': jeu.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('jeu_new') }}">Create a new jeu</a>
-        </li>
-    </ul>
+{% block main %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-10">
+                {% for jeu in jeux %}
+                    <a href="{{ path('jeu_show', { 'id': jeu.id }) }}">
+                        <div class="vignetteJeu text-center">
+                            <h3>{{ jeu.titre }}</h3>
+                            <h4>{{ jeu.description }}</h4>
+                            <img class="img-responsive img-rounded" src="{{ asset('uploads/objectif/'~jeu.imageObjectif)}}" alt="image jeu n° {{ jeu.id ~' '~ jeu.titre }}">
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
