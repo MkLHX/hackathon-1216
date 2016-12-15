@@ -1,3 +1,8 @@
+go_flash:
+    resource: "@GoFlashBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
@@ -35,8 +40,27 @@ sonata_user_admin_resetting:
     resource: '@SonataUserBundle/Resources/config/routing/admin_resetting.xml'
     prefix: /admin/resetting
 
-
 _sonata_admin:
     resource: .
     type: sonata_admin
     prefix: /admin
+
+#hwi_oauth_redirect:
+#    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+#    prefix:   /connect
+
+#hwi_oauth_login:
+#    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+#    prefix:   /login
+
+#facebook_login:
+#    path: /login/check-facebook
+
+#google_login:
+#    path: /login/check-google
+
+#custom_login:
+#    path: /login/check-custom
+
+#github_login:
+#    path: /login/check-github
