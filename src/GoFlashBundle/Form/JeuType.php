@@ -17,7 +17,10 @@ class JeuType extends AbstractType
         $builder
             ->add('titre')
             ->add('description')
-            ->add('imageObjectif', FileType::class, array('label' => 'Capturer'))
+            ->add('imageObjectif', FileType::class, array('label' => 'Capturer',
+                                                          'attr' => array('accept' => 'image/*',
+                                                                          'id' => 'capture',
+                                                                          'capture' => 'camera')))
         ;
     }
     

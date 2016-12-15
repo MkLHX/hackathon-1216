@@ -3,21 +3,32 @@
 {% block body %}
     <h1>Jeu creation</h1>
 
-    {#{{ form_start(form) }}#}
-        {#{{ form_widget(form) }}#}
-        {#<input type="submit" value="Create" />#}
-    {#{{ form_end(form) }}#}
+    <div class="container">
 
-    {{ form_start(form) }}
-    {{ form_widget(form.titre) }}
-    {{ form_widget(form.description) }}
-    {#{{ form_widget(form.imageObjectif) }}#}
-    <input type="file" accept="image/*" id="capture" capture="camera" name="imageObjectif">
-    {{ form_end(form) }}
+        {{ form_start(form) }}
+            <div class="row">
+                <div class="col-lg-12">
+                    {{ form_widget(form.titre) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    {{ form_widget(form.description) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    {{ form_widget(form.imageObjectif) }}
+                </div>
+            </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('jeu_index') }}">Back to the list</a>
-        </li>
-    </ul>
+            <div class="row">
+                <input class="" type="submit" value="Valider" />
+                <a href="{{ path('jeu_index') }}">Retour à la liste</a>
+            </div>
+
+
+        {{ form_end(form) }}
+
+    </div>
 {% endblock %}

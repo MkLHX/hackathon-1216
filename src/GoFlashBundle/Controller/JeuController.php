@@ -3,9 +3,12 @@
 namespace GoFlashBundle\Controller;
 
 use GoFlashBundle\Entity\Jeu;
+use GoFlashBundle\Form\JeuType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+
 
 /**
  * Jeu controller.
@@ -26,11 +29,11 @@ class JeuController extends Controller
 
         $jeus = $em->getRepository('GoFlashBundle:Jeu')->findAll();
 
-        return $this->render('jeu/index.html.twig', array(
+        return $this->render('@GoFlash/jeu/index.html.twig', array(
             'jeus' => $jeus,
         ));
     }
-
+/* ---------------------------------------- NEW ----------------------------------------- */
     /**
      * Creates a new jeu entity.
      *
@@ -39,24 +42,45 @@ class JeuController extends Controller
      */
     public function newAction(Request $request)
     {
+
         $jeu = new Jeu();
+
         $form = $this->createForm('GoFlashBundle\Form\JeuType', $jeu);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($jeu);
-            $em->flush($jeu);
+
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            $file = $jeu->getImageObjectif();
+
+            // Génerer un nom unique avant sa sauvegarde
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            // Transferer l'image vars son dossier de destination
+            $file->move(
+                $this->getParameter('objectif_directory'), // routing pour definir l'endroit ou stocker l'image
+                $fileName
+            );
+
+            // Enregistrement de l'image
+            $jeu->setImageObjectif($fileName);
+
+//            $em = $this->getDoctrine()->getManager();
+//            $em->persist($jeu);
+//            $em->flush($jeu);
 
             return $this->redirectToRoute('jeu_show', array('id' => $jeu->getId()));
+//            return $this->redirect($this->generateUrl('jeu_show', array('id' => $jeu->getId())));
         }
 
-        return $this->render('jeu/new.html.twig', array(
+        return $this->render('@GoFlash/jeu/new.html.twig', array(
             'jeu' => $jeu,
             'form' => $form->createView(),
         ));
+
     }
 
+/* -------------------------------------- SHOW ---------------------------------------- */
     /**
      * Finds and displays a jeu entity.
      *
@@ -67,12 +91,13 @@ class JeuController extends Controller
     {
         $deleteForm = $this->createDeleteForm($jeu);
 
-        return $this->render('jeu/show.html.twig', array(
+        return $this->render('@GoFlash/jeu/show.html.twig', array(
             'jeu' => $jeu,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
+/* ---------------------------------------- EDIT ---------------------------------------- */
     /**
      * Displays a form to edit an existing jeu entity.
      *
@@ -91,13 +116,14 @@ class JeuController extends Controller
             return $this->redirectToRoute('jeu_edit', array('id' => $jeu->getId()));
         }
 
-        return $this->render('jeu/edit.html.twig', array(
+        return $this->render('@GoFlash/jeu/edit.html.twig', array(
             'jeu' => $jeu,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
+/* -------------------------------------------- DELETE -------------------------------------- */
     /**
      * Deletes a jeu entity.
      *

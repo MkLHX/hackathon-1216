@@ -126,3 +126,4 @@ class Jeu
         return $this->imageObjectif;
     }
 }
+
