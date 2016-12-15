@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Jeus list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Imageobjectif</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for jeu in jeus %}
+            <tr>
+                <td><a href="{{ path('jeu_show', { 'id': jeu.id }) }}">{{ jeu.id }}</a></td>
+                <td>{{ jeu.titre }}</td>
+                <td>{{ jeu.description }}</td>
+                <td>{{ jeu.imageObjectif }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('jeu_show', { 'id': jeu.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('jeu_edit', { 'id': jeu.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('jeu_new') }}">Create a new jeu</a>
+        </li>
+    </ul>
+{% endblock %}
