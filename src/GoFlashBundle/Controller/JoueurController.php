@@ -43,7 +43,7 @@ class JoueurController extends Controller
     public function newAction(Request $request)
     {
         $joueur = new Joueur();
-        var_dump($joueur->getUsers()); die;
+//        var_dump($joueur->getUsers()); die;
 //        $form = $this->createForm('GoFlashBundle\Form\JoueurType', $joueur);
 //        $form->handleRequest($request);
 
