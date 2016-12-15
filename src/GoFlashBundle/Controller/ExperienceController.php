@@ -74,7 +74,7 @@ class ExperienceController extends Controller
         $editForm->handleRequest($request);
 //      ICI ON DOIT RECUPERER LES DONNEES DES CHAMPS ID.JOUEUR, USER_ID.JOUEUR, IMAGE_ESSAI.JOUEUR, USER_ID.EXPERIENCE;
 //                                                   EXPERIENCE.EXPERIENCE, NIVEAU.EXPERIENCE,
-//                                                   ID.PROFILEFOSUSER1
+//                                                   ID.PROFILE
 
         if (){
 
