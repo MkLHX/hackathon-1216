@@ -3,7 +3,7 @@
 namespace GoFlashBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -12,13 +12,15 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  *
  * @ORM\Table(name="jeu")
  * @ORM\Entity(repositoryClass="GoFlashBundle\Repository\JeuRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Jeu
 {
     public $file;
 
     /**
-     * @ORM\PrePersist
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
      */
     public function preUpload()
     {
@@ -29,7 +31,8 @@ class Jeu
     }
 
     /**
-     * @ORM\PostPersist
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
      */
     public function upload()
     {
