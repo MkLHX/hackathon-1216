@@ -80,6 +80,14 @@ class Jeu
     }
 
     /* ---------------------------------- CODE GENERER --------------------------------------- */
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="GoFlashBundle\Entity\Joueur", mappedBy="jeux")
+     */
+    private $joueurs;
+
+
     /**
      * @var int
      *
@@ -109,6 +117,12 @@ class Jeu
      * @ORM\Column(name="Image_Objectif", type="string", length=255)
      */
     private $imageObjectif;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Application\Sonata\UserBundle\Entity\User", inversedBy="jeux")
+     */
+    private $users;
 
 
     /**
@@ -192,4 +206,40 @@ class Jeu
     {
         return $this->imageObjectif;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param mixed $users
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getJoueurs()
+    {
+        return $this->joueurs;
+    }
+
+    /**
+     * @param mixed $joueurs
+     */
+    public function setJoueurs($joueurs)
+    {
+        $this->joueurs = $joueurs;
+    }
+
+
+
+
 }
