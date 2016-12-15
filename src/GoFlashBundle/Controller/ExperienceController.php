@@ -66,7 +66,7 @@ class ExperienceController extends Controller
      * @Route("/{id}/edit", name="experience_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Experience $experience, Profile $id, Joueur $idUser, Jeu $id)
+    public function editAction(Request $request, Experience $experience)//, Profile $id, Joueur $idUser, Jeu $id)
     {
 //        $deleteForm = $this->createDeleteForm($experience);
 //        $editForm = $this->createForm('GoFlashBundle\Form\ExperienceType', $experience);
@@ -76,9 +76,9 @@ class ExperienceController extends Controller
 //                                                   EXPERIENCE.EXPERIENCE, NIVEAU.EXPERIENCE,
 //                                                   ID.PROFILE
 
-        if (){
-
-        }
+//        if (){
+//
+//        }
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 

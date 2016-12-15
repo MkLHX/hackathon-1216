@@ -242,4 +242,60 @@ class Jeu
 
 
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->joueurs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add joueur
+     *
+     * @param \GoFlashBundle\Entity\Joueur $joueur
+     *
+     * @return Jeu
+     */
+    public function addJoueur(\GoFlashBundle\Entity\Joueur $joueur)
+    {
+        $this->joueurs[] = $joueur;
+
+        return $this;
+    }
+
+    /**
+     * Remove joueur
+     *
+     * @param \GoFlashBundle\Entity\Joueur $joueur
+     */
+    public function removeJoueur(\GoFlashBundle\Entity\Joueur $joueur)
+    {
+        $this->joueurs->removeElement($joueur);
+    }
+
+    /**
+     * Add user
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $user
+     *
+     * @return Jeu
+     */
+    public function addUser(\Application\Sonata\UserBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $user
+     */
+    public function removeUser(\Application\Sonata\UserBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
 }
