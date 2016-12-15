@@ -12,4 +12,4 @@
 /composer.phar
 .idea/
 .DS_Store/
-*.php~
+/*.php~
