@@ -94,6 +94,8 @@ sonata_user:
     security_acl: true
     manager_type: orm # can be orm or mongodb
 
+
+
 #FOS User config
 fos_user:
     db_driver:      orm # can be orm or odm

@@ -13,7 +13,115 @@ use Doctrine\ORM\Mapping as ORM;
 class Joueur
 {
 
+    public $file;
 
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            // do whatever you want to generate a unique name
+            $this->imageEssai = uniqid().'.'.$this->file->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->file->move($this->getUploadRootDir(), $this->imageEssai);
+
+        unset($this->file);
+    }
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
+    }
+
+    //  FONCTION DE TEST DU DOSSIER UPLOAD
+    protected function getUploadDir()
+    {
+        return 'uploads/essai';
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->imageEssai ? null : $this->getUploadDir().'/'.$this->imageEssai;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->imageEssai ? null : $this->getUploadRootDir().'/'.$this->imageEssai;
+    }
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="todo", type="boolean", nullable=true)
+     */
+    private $toDo;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="evaluate", type="boolean", nullable=true)
+     */
+    private $evaluate;
+
+    /**
+     * @return string
+     */
+    public function getEvaluate ()
+    {
+        return $this->evaluate;
+    }
+
+    /**
+     * @param string $evaluate
+     */
+    public function setEvaluate ($evaluate)
+    {
+        $this->evaluate = $evaluate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToDo ()
+    {
+        return $this->toDo;
+    }
+
+    /**
+     * @param string $toDo
+     */
+    public function setToDo ($toDo)
+    {
+        $this->toDo = $toDo;
+    }
+
+
+/* --------------------------------------- CODE GENERE SYMFONY ---------------------------------------------*/
     /**
      * @ORM\OneToOne(targetEntity="GoFlashBundle\Entity\Experience", inversedBy="joueur")
      *

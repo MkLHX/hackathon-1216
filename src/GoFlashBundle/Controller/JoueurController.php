@@ -86,13 +86,14 @@ class JoueurController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $joueur->preUpload();
             $joueur->upload();
+            $joueur->setToDo(true);
             $em = $this->getDoctrine()->getManager();
             $em->persist($joueur);
             $em->flush();
 
             $this->addFlash(
-                'success',
-                'La capture du jeu "'.$joueur->getJeux().'" est envoyée au meneur pour validation'
+                'notice',
+                'La capture du jeu est envoyée au meneur pour validation'
             );
 
             return $this->redirectToRoute('accueil');
