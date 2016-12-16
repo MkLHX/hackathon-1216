@@ -75,7 +75,53 @@ class Joueur
     {
         return null === $this->imageEssai ? null : $this->getUploadRootDir().'/'.$this->imageEssai;
     }
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="todo", type="boolean")
+     */
+    private $toDo;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="evaluate", type="boolean")
+     */
+    private $evaluate;
 
+    /**
+     * @return string
+     */
+    public function getEvaluate ()
+    {
+        return $this->evaluate;
+    }
+
+    /**
+     * @param string $evaluate
+     */
+    public function setEvaluate ($evaluate)
+    {
+        $this->evaluate = $evaluate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToDo ()
+    {
+        return $this->toDo;
+    }
+
+    /**
+     * @param string $toDo
+     */
+    public function setToDo ($toDo)
+    {
+        $this->toDo = $toDo;
+    }
+
+
+/* --------------------------------------- CODE GENERE SYMFONY ---------------------------------------------*/
     /**
      * @ORM\OneToOne(targetEntity="GoFlashBundle\Entity\Experience", inversedBy="joueur")
      *
