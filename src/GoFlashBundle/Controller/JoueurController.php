@@ -91,7 +91,7 @@ class JoueurController extends Controller
             $em->flush();
 
             $this->addFlash(
-                'success',
+                'notice',
                 'La capture du jeu est envoyée au meneur pour validation'
             );
 
