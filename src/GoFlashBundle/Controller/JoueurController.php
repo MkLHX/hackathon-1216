@@ -92,7 +92,7 @@ class JoueurController extends Controller
 
             $this->addFlash(
                 'success',
-                'La capture du jeu "'.$joueur->getJeux().'" est envoyée au meneur pour validation'
+                'La capture du jeu est envoyée au meneur pour validation'
             );
 
             return $this->redirectToRoute('accueil');

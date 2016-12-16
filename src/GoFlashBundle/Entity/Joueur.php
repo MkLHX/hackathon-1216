@@ -78,13 +78,13 @@ class Joueur
     /**
      * @var string
      *
-     * @ORM\Column(name="todo", type="boolean")
+     * @ORM\Column(name="todo", type="boolean", nullable=true)
      */
     private $toDo;
     /**
      * @var string
      *
-     * @ORM\Column(name="evaluate", type="boolean")
+     * @ORM\Column(name="evaluate", type="boolean", nullable=true)
      */
     private $evaluate;
 
