@@ -1,1 +1,6 @@
-hello la list of your games
+{% block listOfYourGame %}
+    zone your game
+    {% block stats %}
+        {{ render(controller('GoFlashBundle:Default:stat')) }}
+    {% endblock %}
+{% endblock %}

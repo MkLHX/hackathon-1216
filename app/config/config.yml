@@ -97,12 +97,12 @@ sonata_user:
         # Profile show page is a dashboard as in SonataAdminBundle
         dashboard:
             blocks:
-                - { position: left, type: sonata.block.service.text, settings: { content: "<h3>Liste des validations en attente</h3>"} }
-                - { position: left, type: sonata.user.block.menu, settings: { template: "GoFlashBundle::listToEval.html.twig" }}
-                - { position: left, type: sonata.block.service.text, settings: { content: "<h3>Liste de tes créations</h3>"} }
-                - { position: left, type: sonata.user.block.menu, settings: { template: "GoFlashBundle::listOfYourGame.html.twig" }}
-                - { position: left, type: sonata.block.service.text, settings: { content: "<h3>Tes Stats</h3>"} }
-                - { position: left, type: sonata.user.block.menu, settings: { template: "GoFlashBundle::stat.html.twig" }}
+#                - { position: left, type: sonata.block.service.text, settings: { content: "<h3>Liste des validations en attente</h3>"} }
+#                - { position: left, type: sonata.user.block.menu, settings: { template: "GoFlashBundle::listToEval.html.twig" }}
+#                - { position: left, type: sonata.block.service.text, settings: { content: "<h3>Liste de tes créations</h3>"} }
+#                - { position: left, type: sonata.user.block.menu, settings: { template: "GoFlashBundle::listOfYourGame.html.twig" }}
+#                - { position: left, type: sonata.block.service.text, settings: { content: "<h3>Tes Stats</h3>"} }
+#                - { position: left, type: sonata.user.block.menu, settings: { template: "GoFlashBundle::stat.html.twig" }}
                 #- { position: left, type: sonata.block.service.text, settings: { content: "<h2>Welcome!</h2> This is a sample user profile dashboard, feel free to override it in the configuration! Want to make this text dynamic? For instance display the user's name? Create a dedicated block and edit the configuration!"} }
                 #- { position: left, type: sonata.order.block.recent_orders, settings: { title: Recent Orders, number: 5, mode: public }}
                 #- { position: right, type: sonata.timeline.block.timeline, settings: { max_per_page: 15 }}

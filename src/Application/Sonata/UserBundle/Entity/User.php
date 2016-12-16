@@ -28,6 +28,7 @@ class User extends BaseUser
 {
     /**
      * @ORM\ManyToMany(targetEntity="GoFlashBundle\Entity\Joueur", mappedBy="users")
+     * @ORM\JoinColumn(name="joueur_id", referencedColumnName="id")
      */
     private $joueurs;
 

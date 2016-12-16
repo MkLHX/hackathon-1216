@@ -1,1 +1,11 @@
-hello la liste to eval!!!
+{% block listToEval %}
+    {% for joueur in joueurs %}
+        {% for jeu in joueur.jeux %}
+            {{ jeu.titre }}
+        {% endfor %}
+        <p>{{ joueur.todo }}</p>
+    {% endfor %}
+    {% block listOfYourGame %}
+        {{ render(controller('GoFlashBundle:Default:listOfYourGame')) }}
+    {% endblock %}
+{% endblock %}

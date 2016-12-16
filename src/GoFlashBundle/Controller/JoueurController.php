@@ -50,8 +50,14 @@ class JoueurController extends Controller
 
         // appel de l'id de jeu pour insertion dans table joueur
         $joueur->addJeux($jeu);
+
+        //$joueur->setJeux($jeu);
+
+        $jeu->addJoueur($joueur);
+
         $em = $this->getDoctrine()->getManager();
         $em->persist($joueur);
+
         $em->flush();
 
         return $this->redirectToRoute('joueur_edit', array('id' => $joueur->getId()));
