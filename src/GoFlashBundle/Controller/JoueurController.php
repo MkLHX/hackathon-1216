@@ -104,4 +104,58 @@ class JoueurController extends Controller
             'edit_form' => $editForm->createView(),
         ));
     }
+
+    /* VERIFIER LA ROUTE EN ANNOTATION CAR PAS D'AFFICHAGE EN RENDER */
+    /**
+     * Displays a form to evaluate an existing joueur entity.
+     *
+     * @Route("/{id}/validation", name="joueur_validation")
+     * @Method({"GET", "POST"})
+     */
+    public function validationAction(Request $request, Joueur $joueur){
+
+        $joueur->getEvaluate();
+
+        if ($joueur->getEvaluate() == false){
+
+            $joueur->setEvaluate(true);
+
+
+            $joueur->setExperience($joueur->getExperience()+1);
+
+            $joueur->removeUpload();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($joueur);
+            $em->flush();
+
+            $this->addFlash(
+                'notice',
+                'La capture du jeu a été validée par le meneur. !Félicitation!'
+            );
+
+            return $this->redirectToRoute('accueil');
+        }
+        else {
+
+            $joueur->removeUpload();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($joueur);
+            $em->flush();
+
+            $this->addFlash(
+                'notice',
+                'La capture du jeu n\'a pas été validée par le meneur. Veuillez recommencer'
+            );
+
+//            return $this->redirectToRoute('accueil');
+
+        }
+
+        return $this->render('@GoFlash/joueur/edit.html.twig', array(
+            'joueur' => $joueur,
+//            'edit_form' => $editForm->createView(),
+        ));
+    }
 }
