@@ -83,12 +83,6 @@ class Jeu
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="GoFlashBundle\Entity\Joueur", mappedBy="jeux")
-     */
-    private $joueurs;
-
-
-    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -124,6 +118,10 @@ class Jeu
      */
     private $users;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="GoFlashBundle\Entity\Joueur", mappedBy="jeux")
+     */
+    private $joueurs;
 
     /**
      * Get id
