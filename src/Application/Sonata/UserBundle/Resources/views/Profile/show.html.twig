@@ -14,7 +14,7 @@ file that was distributed with this source code.
 {% block sonata_profile_content %}
     {#% sonata_template_box 'This is the user profile template. Feel free to override it.' %#}
 
-    <div class="row row-fluid">
+    {#<div class="row row-fluid">
         {% set has_center = false %}
         {% for block in blocks %}
             {% if block.position == 'center' %}
@@ -47,5 +47,9 @@ file that was distributed with this source code.
                 {% endif %}
             {% endfor %}
         </div>
-    </div>
+    </div>#}
+    {{ user.username }}
+    {% block listToEval %}
+        {{ render(controller('GoFlashBundle:Default:listToEval')) }}
+    {% endblock %}
 {% endblock %}
