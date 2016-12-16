@@ -21,13 +21,13 @@ class JeuType extends AbstractType
                                 'required'=>false,
                                 )
             )
-            ->add('file', 'file', array('label' => 'Capture',
-                                                             'attr' => array('accept' => 'image/*',
-                                                                          'id' => 'capture',
-                                                                          'capture' => 'camera')
+            ->add('file', 'file', array('label' => 'Capture modèle',
+                                        'attr' => array('accept' => 'image/*',
+                                                        'id' => 'capture',
+                                                        'capture' => 'camera',
+                                                        )
                                         )
-            )
-        ;
+            );
     }
     
     /**

@@ -13,6 +13,68 @@ use Doctrine\ORM\Mapping as ORM;
 class Joueur
 {
 
+    public $file;
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            // do whatever you want to generate a unique name
+            $this->imageEssai = uniqid().'.'.$this->file->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->file->move($this->getUploadRootDir(), $this->imageEssai);
+
+        unset($this->file);
+    }
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
+    }
+
+    //  FONCTION DE TEST DU DOSSIER UPLOAD
+    protected function getUploadDir()
+    {
+        return 'uploads/essai';
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->imageEssai ? null : $this->getUploadDir().'/'.$this->imageEssai;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->imageEssai ? null : $this->getUploadRootDir().'/'.$this->imageEssai;
+    }
 
     /**
      * @ORM\OneToOne(targetEntity="GoFlashBundle\Entity\Experience", inversedBy="joueur")
@@ -46,7 +108,7 @@ class Joueur
     /**
      * @var string
      *
-     * @ORM\Column(name="image_essai", type="string", length=255)
+     * @ORM\Column(name="image_essai", type="string", length=255, nullable=true)
      */
     private $imageEssai;
 

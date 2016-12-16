@@ -42,21 +42,21 @@ class JeuController extends Controller
      */
     public function newAction(Request $request)
     {
-        $jeu = new Jeu();
+        $jeu = new Jeu;
         $form = $this->createForm('GoFlashBundle\Form\JeuType', $jeu);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($jeu);
-            $em->flush($jeu);
+            $em->flush();
 
             $this->addFlash(
                 'success',
-                'Votre jeu a bien été ajouté'
+                'Le jeu "'.$jeu->getTitre().'" a bien été ajouté'
             );
 
-            return $this->redirectToRoute('accueil');
+            return $this->redirectToRoute('sonata_user_profile_show');
         }
 
         return $this->render('@GoFlash/jeu/new.html.twig', array(
