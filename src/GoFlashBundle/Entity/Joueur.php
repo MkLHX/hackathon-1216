@@ -12,52 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Joueur
 {
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="todo", type="boolean")
-     */
-    private $toDo;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="evaluate", type="boolean")
-     */
-    private $evaluate;
-
-    /**
-     * @return string
-     */
-    public function getEvaluate ()
-    {
-        return $this->evaluate;
-    }
-
-    /**
-     * @param string $evaluate
-     */
-    public function setEvaluate ($evaluate)
-    {
-        $this->evaluate = $evaluate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getToDo ()
-    {
-        return $this->toDo;
-    }
-
-    /**
-     * @param string $toDo
-     */
-    public function setToDo ($toDo)
-    {
-        $this->toDo = $toDo;
-    }
-
     public $file;
 
     /**
@@ -123,13 +77,13 @@ class Joueur
     /**
      * @var string
      *
-     * @ORM\Column(name="todo", type="boolean")
+     * @ORM\Column(name="todo", type="boolean", nullable=true)
      */
     private $toDo;
     /**
      * @var string
      *
-     * @ORM\Column(name="evaluate", type="boolean")
+     * @ORM\Column(name="evaluate", type="boolean", nullable=true)
      */
     private $evaluate;
 
