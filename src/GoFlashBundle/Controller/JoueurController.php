@@ -86,6 +86,7 @@ class JoueurController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $joueur->preUpload();
             $joueur->upload();
+            $joueur->setToDo(true);
             $em = $this->getDoctrine()->getManager();
             $em->persist($joueur);
             $em->flush();

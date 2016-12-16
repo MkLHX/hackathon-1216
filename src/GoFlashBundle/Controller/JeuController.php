@@ -52,7 +52,7 @@ class JeuController extends Controller
             $em->flush();
 
             $this->addFlash(
-                'success',
+                'notice',
                 'Le jeu "'.$jeu->getTitre().'" a bien été ajouté'
             );
 
@@ -75,11 +75,11 @@ class JeuController extends Controller
      */
     public function showAction(Jeu $jeu)
     {
-        $deleteForm = $this->createDeleteForm($jeu);
+        //$deleteForm = $this->createDeleteForm($jeu);
 
         return $this->render('@GoFlash/jeu/show.html.twig', array(
             'jeu' => $jeu,
-            'delete_form' => $deleteForm->createView(),
+            //'delete_form' => $deleteForm->createView(),
         ));
     }
 
